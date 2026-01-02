@@ -163,7 +163,7 @@
                 <p>疑問文（?） → k</p>`,
                 choices: ['j', 'k'],
                 on_finish: function (data) {
-                    const currentStim = String(jsPsych.evaluateTimelineVariable('stim'));
+                    const currentStim = String(jsPsych.timelineVariable('stim'));
                     data.task = "task1test";
                     data.stimulus = currentStim;
 
@@ -231,5 +231,6 @@
 </script>
 
 </html>
+
 
 
