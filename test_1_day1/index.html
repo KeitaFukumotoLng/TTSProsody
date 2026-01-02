@@ -95,7 +95,7 @@
 
     const audioFilesTask1prac = [];
     for (let i = 21; i <= 30; i++) {
-        audioFilesTask1prac.push(`Stimuli_Task1and3_prac/P${String(i).padStart(2, '0')}.wav`);
+        audioFilesTask1prac.push(`../Stimuli_Task1and3_prac/P${String(i).padStart(2, '0')}.wav`);
     }
     const selectedPrac = jsPsych.randomization.shuffle(audioFilesTask1prac).slice(0, 5);
 
@@ -134,8 +134,8 @@
     const setupTask1test = {
         type: jsPsychCallFunction,
         func: () => {
-            const pool1 = []; for (let i = 1; i <= 36; i++) pool1.push(`Stimuli_TTS/S${String(i).padStart(3, '0')}.wav`);
-            const pool2 = []; for (let i = 73; i <= 108; i++) pool2.push(`Stimuli_TTS/S${String(i).padStart(3, '0')}.wav`);
+            const pool1 = []; for (let i = 1; i <= 36; i++) pool1.push(`../Stimuli_TTS/S${String(i).padStart(3, '0')}.wav`);
+            const pool2 = []; for (let i = 73; i <= 108; i++) pool2.push(`../Stimuli_TTS/S${String(i).padStart(3, '0')}.wav`);
 
             window.day1Stimuli = jsPsych.randomization.shuffle([
                 ...jsPsych.randomization.shuffle(pool1).slice(0, 18).map(s => ({ stim: s })),
@@ -231,4 +231,5 @@
 </script>
 
 </html>
+
 
