@@ -97,7 +97,7 @@
     selectedPrac.forEach(i => {
         timeline.push({
             type: jsPsychAudioKeyboardResponse,
-            stimulus: `Stimuli_Task1prac/P${String(i).padStart(2, '0')}.wav`,
+            stimulus: `Stimuli_Task2_prac/P${String(i).padStart(2, '0')}.wav`,
             choices: "NO_KEYS",
             trial_ends_after_audio: true,
             prompt: '<div style="font-size:40px;">+</div>',
@@ -105,7 +105,7 @@
         });
         timeline.push({
             type: jsPsychAudioKeyboardResponse,
-            stimulus: `Stimuli_Task1prac/P${String(i + 1).padStart(2, '0')}.wav`,
+            stimulus: `Stimuli_Task2_prac/P${String(i + 1).padStart(2, '0')}.wav`,
             choices: "NO_KEYS",
             trial_ends_after_audio: true,
             prompt: '<div style="font-size:40px;">+</div>'
@@ -176,7 +176,7 @@
     selectedPrac3.forEach(i => {
         timeline.push({
             type: jsPsychAudioKeyboardResponse,
-            stimulus: `Stimuli_Task2prac/P${i}.wav`,
+            stimulus: `Stimuli_Task1and3_prac/P${i}.wav`,
             choices: "NO_KEYS",
             trial_ends_after_audio: true,
             prompt: '<div style="font-size:40px;">+</div>'
