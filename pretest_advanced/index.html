@@ -29,6 +29,15 @@
   const jsPsych = initJsPsych({
     on_finish: function () {
       console.log("experiment finished");
+      // 50%の確率でurl1(tts)またはurl2(human)に遷移させる設定
+      const url1 = "https://keitafukumotolng.github.io/TTSProsody/test_1_day1/";
+      const url2 = "https://keitafukumotolng.github.io/TTSProsody/test_2_day1/";
+
+      // Math.random() は 0以上1未満の数値を返す
+      const targetUrl = Math.random() < 0.5 ? url1 : url2;
+
+      // ページを遷移させる
+      window.location.href = targetUrl;
     }
   });
 
@@ -114,11 +123,12 @@
           });
 
           return `
-      <h3>これで事前調査は終了です。ご協力ありがとうございました。</h3>
+      <h3>これで調査②は終了です。</h3>
       <p>実在語 正答数：${words_correct} / 40</p>
       <p>非実在語 正答数：${nonwords_correct} / 20</p>
       <h3>LexTALEスコア：${score.toFixed(1)}</h3>
-      <h3><br>Enterキーを押して、画面が白くなってからページを閉じてください。</h3>
+      <p><br>続いて、調査③をおこないます。</p>
+      <p><strong>Enterキー</strong>を押すと、ページが自動で切り替わります（数秒かかる場合があります）。</p>
     `;
         },
         choices: ["Enter"],
@@ -160,5 +170,6 @@
 </script>
 
 </html>
+
 
 
