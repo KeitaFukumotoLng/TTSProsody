@@ -18,53 +18,44 @@
 
 <body></body>
 <script>
-    // --- IDを自動生成する関数 ---
-    function generateID() {
-        const now = new Date();
-        const id = now.getFullYear().toString().slice(-2) +
-            (now.getMonth() + 1).toString().padStart(2, '0') +
-            now.getDate().toString().padStart(2, '0') +
-            now.getHours().toString().padStart(2, '0') +
-            now.getMinutes().toString().padStart(2, '0') +
-            now.getSeconds().toString().padStart(2, '0');
-        return id;
-    }
-    const assignedID = generateID();
-
+//jsPsychを呼び起こす
     const jsPsych = initJsPsych({
         on_finish: function () {
             console.log("experiment finished");
         }
     });
 
-    jsPsych.data.addProperties({ subject_id: assignedID });
-    jsPsych.randomization.setSeed(assignedID);
-
     const timeline = [];
 
-    // IDの発行を通知
-    const idDisplay = {
-        type: jsPsychHtmlKeyboardResponse,
-        stimulus: `
-            <h3>調査にご協力いただき、ありがとうございます。</h3>
-            <p>あなたの参加者IDを発行しました：</p>
-            <p style="font-size:40px; color:red; font-weight:bold;">${assignedID}</p>
-            <p>このIDは<strong>後日の実験でも必ず使用します。</strong></p>
-            <p>スクリーンショットを撮るか、必ずメモをしておいてください。</p>
-            <br>
-            <p>準備ができたら、任意のキーを押してください。</p>
-        `,
-        choices: "ALL_KEYS"
+    //参加者IDを設定
+    const subjectID = {
+        type: jsPsychSurveyText,
+        questions: [
+            {
+                prompt: "配布された参加者IDを正確に入力してください。",
+                name: "subject_id",
+                required: true
+            }
+        ],
+        on_finish: function (data) {
+            const id = data.response.subject_id;
+            jsPsych.data.addProperties({
+                subject_id: id
+            });
+        }
     };
-    timeline.push(idDisplay);
+    timeline.push(subjectID);
+
 
     //全体の教示
     const instruction = {
         type: jsPsychHtmlKeyboardResponse,
         stimulus: `
-    <p>本日は、課題を1つおこないます。<p>
-    <p>所要時間は2分程度です。</p>
-    <p><br>任意のキーを押して、課題の説明にうつります。</p>
+    <p>これから、調査③をおこないます。<p>
+    <p>所要時間は3分程度です。</p>
+    <p><strong>この調査では、パソコンから音声が流れます。</strong></p>
+    <p>周囲にひとのいない、静かな環境で取り組んでください。</p>
+    <p><br>任意のキーを押して、説明にうつります。</p>
     `,
         choices: "ALL_KEYS"
     };
@@ -194,8 +185,9 @@
         type: jsPsychHtmlKeyboardResponse,
         stimulus: `
     <h2>本日の課題は終わりです。</h2>
-    <p><br>ID「<strong>${assignedID}</strong>」を必ず記録しておいてください。</p>
-    <p><br>IDを記録できたら、画面を閉じてください。ありがとうございました。</p>
+    <p><br>後日、続きの調査（所要時間5分）のURLをお送りしますので、引き続きご協力のほどよろしくお願い申し上げます。</p>
+    <p><strong>参加者IDは後日も使用するので、必ず記録したままにしておいてください。</strong></p>
+    <p><br>ご協力ありがとうございました。画面を閉じてください。</p>
     `,
         choices: "ALL_KEYS",
         on_start: function () { saveData(); }
@@ -231,6 +223,7 @@
 </script>
 
 </html>
+
 
 
 
