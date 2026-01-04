@@ -88,7 +88,7 @@
 
     const audioFilesTask1prac = [];
     for (let i = 21; i <= 30; i++) {
-        audioFilesTask1prac.push(`../Stimuli_Task1and3_prac/P`Stimuli(i).padStart(2, '0')}.wav`);
+        audioFilesTask1prac.push(`../Stimuli_Task1and3_prac/P${String(i).padStart(2, '0')}.wav`);
     }
     const selectedPrac = jsPsych.randomization.shuffle(audioFilesTask1prac).slice(0, 5);
 
