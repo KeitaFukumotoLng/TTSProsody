@@ -31,7 +31,7 @@
     // 1. ID入力
     timeline.push({
         type: jsPsychSurveyText,
-        questions: [{ prompt: "先日発行された参加者ID（9桁）を正確に入力してください。", name: 'id', required: true }],
+        questions: [{ prompt: "先日発行された<strong>9桁</strong>の参加者IDを，<strong>半角</strong>で正確に入力してください。", name: 'id', required: true }],
         on_finish: function (data) {
             jsPsych.data.addProperties({ subject_id: data.response.id });
         }
